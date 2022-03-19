@@ -1,4 +1,5 @@
 from operator import le
+from pyexpat import model
 from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
@@ -13,6 +14,8 @@ class Patient(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, primary_key=True)
     doctors = models.ManyToManyField(Doctor, blank=True)
+    dob = models.DateTimeField(null=True)
+    medcond = models.CharField(max_length=10000, null=True)
 
 
 class Document(models.Model):

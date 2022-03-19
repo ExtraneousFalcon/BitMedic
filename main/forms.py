@@ -10,9 +10,3 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('role', 'username', 'password1', 'password2')
-
-
-""" class Prescription(forms.Form):
-    file = forms.FileField(required=True)
-    privateKey = forms.CharField(max_length=64, required=True)
-    publicKey = forms.CharField(max_length=64, required=True) """

@@ -1,0 +1,12 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<form method="POST">
+    {%csrf_token%}
+    Please enter your date of birth.
+    <input type="datetime-local" name="dob"></input>
+    Please enter any medical conditions you have.
+    <input type="text" name="conditions"></input>
+    <button type="submit">Submit</button>
+</form>
+
+{% endblock content %}

@@ -1,5 +1,4 @@
 from pydoc import Doc
-from aiohttp import request
 from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView
 from django.views.generic.edit import FormView
@@ -189,3 +188,19 @@ class PrescriptionView(CreateView):
 
         return super(RegisterPage, self).get(*args, **kwargs)
 """
+
+
+def createpp(request):
+    if request.method == "POST":
+        patient = Patient.objects.get(user=request.user)
+        patient.dob = request.POST.get("dob")
+        patient.medcond = request.POST.get("conditions")
+        patient.save()
+        return redirect('home')
+    return render(request, "main/createpp.html")
+
+
+def profile(request):
+    p = Patient.objects.get(user=request.user)
+    print(p.dob)
+    return render(request, "main/profile.html", {'patient': p})

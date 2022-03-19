@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import DocumentView, home, CustomLoginView, RegisterPage, filelistpatient, patientlist, patientview, doctorlist, PrescriptionView, add_doctor, remove_doctor
+from .views import DocumentView, home, CustomLoginView, RegisterPage, filelistpatient, patientlist, patientview, doctorlist, PrescriptionView, add_doctor, remove_doctor, createpp, profile
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
@@ -17,5 +17,7 @@ urlpatterns = [
     path('prescribe/<str:patient>', PrescriptionView.as_view(), name="prescribe"),
     path('add/', add_doctor, name="add"),
     path('remove/<str:doctor>', remove_doctor, name="remove"),
+    path('createpp/', createpp, name="createpp"),
+    path('profile/', profile, name="profile"),
 
 ]
