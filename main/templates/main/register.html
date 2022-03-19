@@ -1,0 +1,37 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<h1>Register for BitMedic</h1>
+<p>Already have an account? <a href="{% url 'login' %}">Login here</a>.</p>
+<p>Register for BitMedic to get on-demand access to your medical profile, prescription history, and more.</p>
+
+<div>
+    <form method="POST">
+        {% csrf_token %}
+        <form>
+            <br>
+            <h3>Are you a doctor or a patient?</h3>
+            {{form.role}}
+            <br><br>
+            <h3>Create a username:</h3>
+            {{form.username}}
+            <br> <br>
+            <h3>Create your password:</h3>
+            {{form.password1}}
+            <br>
+
+            <p>Your password can’t be too similar to your other personal information.<br>
+                Your password must contain at least 8 characters.<br>
+                Your password can’t be a commonly used password.<br>
+                Your password can’t be entirely numeric.</p> <br> <br>
+
+
+            <h3> <b> Re-enter your password: </b></h3>
+            {{form.password2}} <br> <br>
+
+            <input style="margin-top:10px" class="button" type="submit" value="Register">
+        </form>
+
+        <p>New to BitMedic? <a href="{% url 'register' %}">Create a new profile</a>.</p>
+</div>
+{% endblock content %}

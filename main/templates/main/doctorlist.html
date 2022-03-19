@@ -1,0 +1,23 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<h1>Here are your doctors.</h1>
+<p>You can add or remove doctors that can access your records and prescribe you medicine.</p>
+
+<form action="{% url 'add' %}" method="get">
+    <input type="text" name="name" placeholder="Search a name">
+    <button type="submit">Add</button>
+</form>
+
+{% if message %}
+{{ message }}
+{% endif %}
+
+{% for doctor in doctors %}
+<div class="card">
+    {{ doctor.user.username }}
+    <a href="{% url 'remove' doctor.user.username %}">Remove</a>
+</div>
+{% endfor %}
+
+{% endblock content %}

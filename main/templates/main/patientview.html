@@ -1,0 +1,11 @@
+{% extends 'main/base.html' %}
+{% block content %}
+{{patient.user.username}}
+{% for document in documents %}
+<p><a href="/media/{{document.doc.name}}">{{document.doc.name}}</a></p>
+
+{% endfor %}
+<a href="{% url 'upload' patient.user.username %}">Upload new documents</a>
+<a href="{% url 'prescribe' patient.user.username %}">Add prescription</a>
+
+{% endblock content %}

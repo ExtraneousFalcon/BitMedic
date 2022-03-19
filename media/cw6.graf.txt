@@ -1,0 +1,110 @@
+:doc title CSCI 2670 - Classwork 6 - Sohum Rao
+___ Instructions
+> |> Create a \graf document with your answers to the following problems.  Save your work as a Grafstate file with the extension **{.graf.txt} and upload it to eLC.
+> |> You may work in small groups.  List in your document *{all} of the students in your group.
+> |> !{Proofread your document *{before} submitting it to eLC.}
+//
+
+:task By the end of this lesson, you should be able to convert a CFG to an @eqnt PDA.
+//
+
+__ Exercises
+
+1. Create a PDA that is @eqnt to the following CFG:
+
+:+ cfg G1
+{
+V={S,A,B}
+S={a,b}
+v0=S
+S->a S b|A B a
+A->b A S|a B|a
+B->A b S|b
+}
+//
+
+:+ pda M
+{
+Q={qs,hub,q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,qf}
+S={a,b}
+T={a,b,S,A,B,$}
+q0=qs
+F={qf}
+qs->q1:\e,\e->$
+q1->hub:\e,\e->S
+
+/* part of S->a S b
+hub -> q2: \e,S->b
+q2->q3:\e,\e->S
+q3->hub:\e,\e->a
+
+/* part of S->A B a
+hub -> q4: \e,S->a
+q4->q5:\e,\e->B
+q5->hub:\e,\e->A
+
+/* part of A->b A S
+hub -> q6: \e,A->S
+q6->q7:\e,\e->A
+q7->hub:\e,\e->b
+
+/* part of A->a B
+hub -> q8: \e,A->B
+q8->hub:\e,\e->a
+
+/* part of B->B b S
+hub -> q9: \e,B->S
+q9->q10:\e,\e->b
+q10->hub:\e,\e->A
+
+/* A->a
+hub:\e,A->a
+
+/* B->b
+hub:\e,B->b
+
+hub->qf:\e,$->\e
+
+/* keyboard
+hub:a,a->\e
+hub:b,b->\e
+}
+
+2. The following PDA M_2 was created from a CFG.  Create a CFG that is @eqnt to M_2.
+
+:+ pda M2
+{
+Q={qs,q1,q2,q3,q4,q5,hub,qf}
+S={a,b}
+T={a,b,$,S,X,Y}
+q0=qs
+F={qf}
+qs->q1:\e,\e->$
+q1->hub:\e,\e->S
+hub->q2:\e,S->X
+q2->q3:\e,\e->S
+q3->hub:\e,\e->a
+hub:\e,S->b
+hub->q4:\e,X->Y
+q4->hub:\e,\e->X
+hub:\e,X->a
+hub->q5:\e,Y->Y
+q5->hub:\e,\e->b
+hub:\e,Y->b
+hub:a,a->\e
+hub:b,b->\e
+hub->qf:\e,$->\e
+}
+:sim M2 abab
+
+:+ cfg G2
+{
+V={S,X,Y}
+S={a,b}
+v0=S
+S-> b| a S X
+X-> a| X Y
+Y-> b| b Y
+}
+
+:sim G2 abab
