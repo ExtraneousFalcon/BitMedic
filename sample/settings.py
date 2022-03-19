@@ -75,13 +75,6 @@ WSGI_APPLICATION = 'sample.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 # https://bennettgarner.medium.com/deploying-a-django-application-to-google-app-engine-f9c91a30bd35
 # [START db_setup]
 if os.getenv('GAE_APPLICATION', None):
@@ -101,16 +94,22 @@ else:
     # to Cloud SQL via the proxy.  To start the proxy via command line: 
     #    $ cloud_sql_proxy -instances=[INSTANCE_CONNECTION_NAME]=tcp:3306 
     # See https://cloud.google.com/sql/docs/mysql-connect-proxy
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.mysql',
+    #         'HOST': '127.0.0.1',
+    #         'PORT': '3306',
+    #         'NAME': 'bitmedic',
+    #         'USER': 'bitmedic',
+    #         'PASSWORD': os.getenv('SQL_PASSWORD'),
+    #     }
+    # }
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'HOST': '127.0.0.1',
-            'PORT': '3306',
-            'NAME': 'bitmedic',
-            'USER': 'bitmedic',
-            'PASSWORD': os.getenv('SQL_PASSWORD'),
-        }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
 # [END db_setup]
 
 
