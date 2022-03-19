@@ -6,19 +6,11 @@
 
 
 
-
 <div>
     <form method="POST" enctype="multipart/form-data">
         {%csrf_token%}
-
-        {{ form.as_p }}
-        <button type="submit">Upload Files</button>
-        <br>
-        <h5>Enter your private Key:</h5>
-        {{form.doctorprivatekey}} <br> <br>
-        <h5>Enter recipient public Key:</h5>
-        {{form.recipientkey}} <br> <br>
-        <input class="button" type="submit" value="Send prescription">
+        {{form.as_p}}
+        <button type="submit">Submit</button>
     </form>
 </div>
 {% endblock content %}

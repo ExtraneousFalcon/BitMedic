@@ -6,7 +6,7 @@ from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
 from django.urls import reverse
 from django.core.files.storage import FileSystemStorage
-from .models import Document, Doctor, Patient
+from .models import Document, Doctor, Patient, Prescription
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.list import ListView
@@ -15,7 +15,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 
-from .forms import SignUpForm, Prescription
+from .forms import SignUpForm
 
 
 @login_required(login_url='login/')
@@ -154,14 +154,33 @@ def remove_doctor(request, doctor):
     return redirect('doctorlist')
 
 
-class PrescriptionPage(FormView):
+class PrescriptionView(CreateView):
+    model = Prescription
+    template_name = "main/prescribe.html"
+    fields = ['file', 'private', 'public']
+    success_url = reverse_lazy('upload')
+
+    def form_valid(self, form):
+        review = form.save(commit=False)
+        review.doctor = Doctor.objects.get(
+            user=User.objects.get(username=self.request.user))
+        patient = self.request.build_absolute_uri()
+        patient = patient.split("/")[-1]
+        review.patient = Patient.objects.get(
+            user=User.objects.get(username=patient))
+        review.hash = "xxx"
+        review.save()
+        return HttpResponseRedirect(reverse('patient', args=[patient]))
+
+
+"""class PrescriptionPage(FormView):
     template_name = "main/prescribe.html"
     form_class = Prescription
     success_url = reverse_lazy('home')
 
     def form_valid(self, form):
         user = form.save()
-
+        pres = Prescription()
         return HttpResponseRedirect(reverse('patient', args=[patient]))
 
     def get(self, *args, **kwargs):
@@ -169,3 +188,4 @@ class PrescriptionPage(FormView):
             return redirect('home')
 
         return super(RegisterPage, self).get(*args, **kwargs)
+"""
