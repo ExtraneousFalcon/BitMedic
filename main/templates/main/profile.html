@@ -1,6 +1,7 @@
 {% extends 'main/base.html' %}
 {% block content %}
-{{patient.name}}
-{{patient.dob}}
-{{patient.medcond}}
+Patient Name: {{patient.user.username}}
+Date of Birth: {{patient.dob}}
+Medical Conditions: {{patient.medcond}}
+Gender: {{patient.gender}}
 {% endblock content %}

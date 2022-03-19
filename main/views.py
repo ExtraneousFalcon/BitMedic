@@ -195,6 +195,7 @@ def createpp(request):
         patient = Patient.objects.get(user=request.user)
         patient.dob = request.POST.get("dob")
         patient.medcond = request.POST.get("conditions")
+        patient.gender = request.POST.get("gender")
         patient.save()
         return redirect('home')
     return render(request, "main/createpp.html")
@@ -202,5 +203,4 @@ def createpp(request):
 
 def profile(request):
     p = Patient.objects.get(user=request.user)
-    print(p.dob)
     return render(request, "main/profile.html", {'patient': p})

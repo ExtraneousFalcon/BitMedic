@@ -8,6 +8,8 @@ from django.contrib.auth.models import User
 class Doctor(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, primary_key=True)
+    special = models.CharField(max_length=100, default="General")
+    job = models.CharField(max_length=100, default="Working")
 
 
 class Patient(models.Model):
@@ -16,6 +18,13 @@ class Patient(models.Model):
     doctors = models.ManyToManyField(Doctor, blank=True)
     dob = models.DateTimeField(null=True)
     medcond = models.CharField(max_length=10000, null=True)
+    GENDER_CHOICES = (
+        ('M', 'Male'),
+        ('F', 'Female'),
+        ('N', 'Nonbinary')
+    )
+    gender = models.CharField(
+        max_length=1, choices=GENDER_CHOICES, default="Please choose your gender")
 
 
 class Document(models.Model):

@@ -2,10 +2,17 @@
 {% block content %}
 <form method="POST">
     {%csrf_token%}
-    Please enter your date of birth.
-    <input type="datetime-local" name="dob"></input>
-    Please enter any medical conditions you have.
-    <input type="text" name="conditions"></input>
+    Enter your date of birth.<br>
+    <input type="datetime-local" name="dob"></input><br>
+    Enter your gender<br>
+    <select name="gender" id="cars" form="carform">
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+        <option value="N">Nonbinary</option>
+    </select>
+    <br>
+    Enter any medical conditions you have.<br>
+    <input type="text" name="conditions"></input><br>
     <button type="submit">Submit</button>
 </form>
 
