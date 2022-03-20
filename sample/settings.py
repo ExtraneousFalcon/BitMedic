@@ -83,7 +83,7 @@ if os.getenv('GAE_APPLICATION', None):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'HOST': '/cloudsql/bitmedic-344605:us-east4:bitmedic',
+            'HOST': '34.86.79.245',
             'USER': 'bitmedic',
             'PASSWORD': os.getenv('SQL_PASSWORD'),
             'NAME': 'bitmedic',
