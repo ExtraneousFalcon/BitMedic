@@ -18,9 +18,9 @@ We made BitMedic possible through Django which runs on a python framework. In or
 https://www.bitmedic.tech/
 
 ## How to use
-First, clone this repo onto your local machine.
-Open the folder sample that contains the manage.py file.
-Then, do python manage.py makemigrations or python3 manage.py runserver
-python manage.py migrate
-python manage.py runserver
-Open localhost:8000 on your web browser!
+- Clone this repo onto your local machine.
+- Open the folder sample that contains the manage.py file.
+- Then, do python manage.py makemigrations or python3 manage.py runserver
+- python manage.py migrate
+- python manage.py runserver
+- Open localhost:8000 on your web browser!
