@@ -18,7 +18,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8f8ff;
+            background-color: #EAF5E6;
         }
 
         h1 {
@@ -40,6 +40,30 @@
 
         a {
             text-decoration: none;
+        }
+
+        .navbar {
+            margin-top: 10px;
+            border-radius: 0.5rem; /* 8px */
+            filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+        }
+
+        .navbar-custom {
+            background-color: white;
+        }
+
+        .nav-link {
+            color: #303030 !important;
+            font-weight: 600 !important;
+        }
+
+        .norm-link {
+            color: #303030;
+            text-decoration: underline;
+        }
+
+        .norm-link:hover {
+            color: gray;
         }
 
         .content {
@@ -88,15 +112,29 @@
             width: 24px;
             color: #303030;
         }
+
+        .back {
+            font-size: 24px;
+            color: #303030;
+            font-weight: 600;
+        }
+
+        .back:hover {
+            color: gray;
+        }
+
+        .logo {
+            height: 50px;
+        }
     </style>
 
 </head>
 
 <body>
     <div class="content">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-custom navbar-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'home' %}">BitMedic</a>
+                <img class="logo" src="https://storage.googleapis.com/bitmedic/logo.png"></img>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -107,31 +145,27 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Dashboard</a>
+                            <a class="nav-link" href="{% url 'home' %}">DASHBOARD</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="mailto:support@bitmedic.tech">Support</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/profile/">Account</a>
+                            <a class="nav-link" href="mailto:support@bitmedic.tech">SUPPORT</a>
                         </li>
                         {% if request.user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'logout' %}">Log out</a>
+                            <a class="nav-link" href="/profile/">ACCOUNT</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">LOG OUT</a>
                         </li>
                         {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'login' %}">Log in</a>
+                            <a class="nav-link" href="{% url 'login' %}">LOG IN</a>
                         </li>
                         {% endif %}
                     </ul>
                 </div>
             </div>
         </nav>
-
-        {% if request.path != "/" %}
-        <a href="{% url 'home' %}">Go Back</a>
-        {% endif %}
 
         <div class="page-content">
             {% block content %}
