@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-x@3xoxblf4)3i-gi6*3)^xgqkb!tqsd#k=xq*0vuhc2%*b+wt3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.bitmedic.tech']
+ALLOWED_HOSTS = ['www.bitmedic.tech', 'localhost']
 
 
 # Application definition
@@ -83,7 +83,7 @@ if os.getenv('GAE_APPLICATION', None):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'HOST': '/cloudsql/bitmedic-344605:us-east4:bitmedic',
+            'HOST': '34.86.79.245',
             'USER': 'bitmedic',
             'PASSWORD': os.getenv('SQL_PASSWORD'),
             'NAME': 'bitmedic',
