@@ -1,6 +1,7 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
+<a class="back" href="{% url 'home' %}">Go Back</a>
 <h1>Here are your files.</h1>
 <p>Select an option below.</p>
 
@@ -15,9 +16,9 @@
             </svg>
             <span class="card-title">{{file.doc.name}}</span>
         </a>
-        <span>Uploaded on March 18 by Dr. Ratmeyer.</span>
+        <span>Uploaded on {{file.date}} by {{file.uploader}}</span>
     </div>
     {% endfor %}
 </div>
-
+<a href="{% url 'upload'%}">Upload new documents</a>
 {% endblock content %}

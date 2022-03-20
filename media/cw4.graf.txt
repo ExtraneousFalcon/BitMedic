@@ -1,0 +1,65 @@
+:doc title CSCI 2670 - Classwork 4
+
+Name: Sai Anoop Avunuri
+
+___ Instructions
+> |> Create a \graf document with your answers to the following problems.  Save your work as a Grafstate file with the extension **{.graf.txt} and upload it to eLC.
+> |> You may work in small groups.  List in your document *{all} of the students in your group.
+
+:task By the end of this assignment, you should be able to design a CFG to solve a problem.
+
+> Consider the following CFG G:
+
+:+ cfg G
+{
+V={E,T,F}
+S={0,1,+,*,~,/,^,[,]}
+v0=E
+E->E T|E + T|E ~ T|T
+T-> T ^ F|T * F|T / F|F
+F->[ E ]|1|0
+}
+
+G is a simple compiler for arithmetical expressions that use:
+> |> addition - \[+]
+> |> multiplication - \[*]
+> |> parenthetical grouping
+>> /* \[[] and \[`]] are used here instead of \[(] and \[)].
+> |> the single digit \[1]
+
+:sim G 1*1+1
+:sim G 1*[1+1]
+
+> We can see from the parse tree that G respects the order of operations and grouping.
+
+[i] !{Ignore the left-most derivations}.  We will working with the parse trees for this exercise.
+
+!! In addition to accepting well-formed arithmetic expressions, your CFG should !{reject} strings that are not well-formed arithmetic expressions.
+
+:sim G 1*1]
+:sim G 1+*1
+
+___ Exercises
+> !{Your CFGs should implement the standard order of operations.}
+
+1. Expand the grammar to handle binary numbers of any length.  @Eg, your grammar should be able to perform the following:
+@{task} :sim G 10*[101+110]
+:sim G 10*[101+110]
+(*) Hint: Your CFG reads input one symbol at a time so what we interpret as the binary number \[101] is read as three consecutive digits.
+
+2. Expand your grammar to handle the subtraction operator while respecting the order of operations.  Use the \[~] (tilde) symbol for the *{minus sign}.  @Eg, your grammar should be able to perform the following:
+@{task} :sim G 101-10*[101-11]
+:sim G 101~10*[101~11]
+? Did your parse tree display the correct order of operations?
+
+3. Expand your grammar to handle the division operator while respecting the order of operations.  Use the \[/] symbol for the division operator.  @Eg, your grammar should be able to perform the following:
+@{task} :sim G 1+11/[10~11]
+:sim G 1+11/[10~11]
+
+4. Expand your grammar to handle the exponent operator while respecting the order of operations.  Use the \[^] symbol for the exponent operator.  @Eg, your grammar should be able to perform the following:
+@{task} :sim G [11*10]^[10-1]
+:sim G [11*10]^[10~1]
+
+/* If you have been modifying the original CFG *{G} for #1-3, you may want to create a new CFG *{G4} for #4 to keep from breaking your previous solutions.
+
+!! Remember that \[~] is used as the minus sign.

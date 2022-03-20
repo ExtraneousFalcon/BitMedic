@@ -1,8 +1,15 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
+<<<<<<< HEAD
 <h1>View your profile</h1>
 <p>This is where you can edit your personal information and medical history. Because your BitMedic account is shared directly with your doctors, you only have to do this once and it will be updated for all of your providers.</p>
+=======
+<a class="back" href="{% url 'home'%}">Go back</a>
+<h1>Edit your profile</h1>
+<p>This is where you can edit your personal information and medical history. Because your BitMedic account is shared
+    directly with your doctors, you only have to do this once and it will be updated for all of your providers.</p>
+>>>>>>> 4b09db91fc71710c2c89539e5839051762193306
 
 <h3>Patient Name:</h3>
 <p>{{patient.user.username}}</p>
@@ -15,5 +22,11 @@
 
 <h3>Gender:</h3>
 <p>{{patient.gender}}</p>
+
+<h3>Phone:</h3>
+<p>{{patient.phone}}</p>
+
+
+<a href="{% url 'createpp' %}">Edit this information</a>
 
 {% endblock content %}

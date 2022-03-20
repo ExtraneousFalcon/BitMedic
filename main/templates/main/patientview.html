@@ -1,6 +1,7 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
+<a class="back" href="{% url 'mypatients'%}">Go back</a>
 <h1>Managing: {{ patient.user.username }}</h1>
 <p>Prescribe new prescriptions or upload medical documents.</p>
 

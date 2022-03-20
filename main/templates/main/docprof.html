@@ -1,9 +1,13 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
+<a class="back" href="{% url 'home' %}">Go back</a>
 <h1>{{ doctor.user.username }}</h1>
 
 <h3>Job:</h3>
 <p>{{doctor.job}}</p>
+<h3>Speciality:</h3>
+<p>{{doctor.special}}</p>
+
 
 {% endblock content %}

@@ -216,12 +216,18 @@ class PrescriptionView(CreateView):
 def createpp(request):
     if request.method == "POST":
         patient = Patient.objects.get(user=request.user)
-        patient.dob = request.POST.get("dob")
-        patient.medcond = request.POST.get("conditions")
-        patient.gender = request.POST.get("gender")
+        if(request.POST.get("conditions")):
+            patient.medcond = request.POST.get("conditions")
+        if(request.POST.get("dob")):
+            patient.dob = request.POST.get("dob")
+        if(request.POST.get("gender")):
+            patient.gender = request.POST.get("gender")
+        if(request.POST.get("phone")):
+            patient.phone = request.POST.get("phone")
+
         patient.save()
-        return redirect('home')
-    return render(request, "main/createpp.html")
+        return redirect('profile')
+    return render(request, "main/createpp.html", {"p": Patient.objects.get(user=request.user)})
 
 
 def profile(request):
@@ -239,6 +245,7 @@ def createdp(request):
         doctor = Doctor.objects.get(user=request.user)
         doctor.special = request.POST.get("special")
         doctor.job = request.POST.get("job")
+        doctor.degree = request.POST.get("degree")
         doctor.save()
         return redirect('home')
     return render(request, "main/createdp.html")
@@ -276,8 +283,9 @@ def order(request, hash):
         send_store_tx = web3.eth.sendRawTransaction(signedTx.rawTransaction)
         temp = web3.eth.wait_for_transaction_receipt(send_store_tx)
         pres = Prescription.objects.get(hash=hash)
+        print(pres)
         hash = temp.transactionHash.hex()
         pres.redeemed = True
         pres.save()
-        return render(request, "main/mypres.html")
+        return redirect('mypres')
     return render(request, "main/order.html")

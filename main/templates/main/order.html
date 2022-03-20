@@ -1,7 +1,7 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-
+<a class="back" href="{% url 'mypres' %}">Go Back</a>
 <form method="POST">
     {%csrf_token%}
     Enter your public key.<br>

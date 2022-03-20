@@ -1,5 +1,6 @@
 from operator import le
 from pyexpat import model
+from statistics import mode
 from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
@@ -8,8 +9,9 @@ from django.contrib.auth.models import User
 class Doctor(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, primary_key=True)
-    special = models.CharField(max_length=100, default="General")
-    job = models.CharField(max_length=100, default="Working")
+    special = models.CharField(max_length=100, null=True, blank=True)
+    job = models.CharField(max_length=100, null=True, blank=True)
+    degree = models.CharField(max_length=100, null=True, blank=True)
 
 
 class Patient(models.Model):
@@ -18,14 +20,9 @@ class Patient(models.Model):
     doctors = models.ManyToManyField(Doctor, blank=True)
     dob = models.DateTimeField(null=True)
     medcond = models.CharField(max_length=10000, null=True)
-    GENDER_CHOICES = (
-        ('M', 'Male'),
-        ('F', 'Female'),
-        ('N', 'Nonbinary'),
-        ('O', 'Other')
-    )
     gender = models.CharField(
-        max_length=1, choices=GENDER_CHOICES, default="Please choose your gender")
+        max_length=100, null=True)
+    phone = models.CharField(max_length=15, null=True)
 
 
 class Document(models.Model):
@@ -33,6 +30,8 @@ class Document(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     patient = models.ForeignKey(
         Patient, on_delete=models.CASCADE, default=None)
+    uploader = models.ForeignKey(
+        User, on_delete=models.CASCADE, default=None)
 
 
 class Prescription(models.Model):
