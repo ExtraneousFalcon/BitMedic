@@ -1,6 +1,7 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
+<a class="back" href="{% url 'home' %}">Go back</a>
 <h1>{{ doctor.user.username }}</h1>
 
 <h3>Job:</h3>

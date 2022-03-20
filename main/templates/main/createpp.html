@@ -1,5 +1,6 @@
 {% extends 'main/base.html' %}
 {% block content %}
+<a class="back" href="{% url 'profile' %}">Go back</a>
 <form method="POST">
     {%csrf_token%}
     {% if not p.dob %}

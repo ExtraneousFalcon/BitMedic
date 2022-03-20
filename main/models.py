@@ -27,7 +27,7 @@ class Patient(models.Model):
         ('O', 'Other')
     )
     gender = models.CharField(
-        max_length=1, choices=GENDER_CHOICES, null=True, blank=True)
+        max_length=1, choices=GENDER_CHOICES, null=True, default='M')
     phone = models.CharField(max_length=15, null=True)
 
 
@@ -36,6 +36,8 @@ class Document(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     patient = models.ForeignKey(
         Patient, on_delete=models.CASCADE, default=None)
+    uploader = models.ForeignKey(
+        User, on_delete=models.CASCADE, default=None)
 
 
 class Prescription(models.Model):

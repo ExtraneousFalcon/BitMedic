@@ -1,6 +1,7 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
+<a class="back" href="{% url 'home' %}">Go back</a>
 <h1>Edit your doctor profile</h1>
 <p>This is information can be viewed by patients.</p>
 
@@ -10,6 +11,9 @@
     <input type="text" name="special"></input><br>
     <h3>Enter your work location:</h3>
     <input type="text" name="job"></input><br>
+    <h3>Enter your degree(s):</h3>
+    <input type="text" name="degree"></input><br>
+
     <button type="submit">Submit</button>
 </form>
 
