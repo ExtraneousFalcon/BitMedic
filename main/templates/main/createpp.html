@@ -2,18 +2,25 @@
 {% block content %}
 <form method="POST">
     {%csrf_token%}
+    {% if not p.dob %}
     Enter your date of birth.<br>
-    <input type="datetime-local" name="dob"></input><br>
+    <input type="datetime-local" name="dob" value="{{p.dob}}"></input><br>
+    {% endif %}
+    {% if not p.gender %}
     Enter your gender<br>
-    <select name="gender" id="cars" form="carform">
+    <select name="gender" selected="M">
         <option value="M">Male</option>
         <option value="F">Female</option>
         <option value="N">Nonbinary</option>
     </select>
     <br>
+    {% endif %}
     Enter any medical conditions you have.<br>
-    <input type="text" name="conditions"></input><br>
+    <input type="text" name="conditions" value="{{p.medcond}}"></input><br>
+    Enter your phone number.<br>
+    <input type="text" name="phone" value="{{p.phone}}"></input><br>
     <button type="submit">Submit</button>
+
 </form>
 
 {% endblock content %}

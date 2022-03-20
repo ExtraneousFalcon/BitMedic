@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-x@3xoxblf4)3i-gi6*3)^xgqkb!tqsd#k=xq*0vuhc2%*b+wt3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.bitmedic.tech']
+ALLOWED_HOSTS = ['www.bitmedic.tech', 'localhost']
 
 
 # Application definition
@@ -90,9 +90,9 @@ if os.getenv('GAE_APPLICATION', None):
         }
     }
 else:
-    # Running locally so connect to either a local MySQL instance or connect 
-    # to Cloud SQL via the proxy.  To start the proxy via command line: 
-    #    $ cloud_sql_proxy -instances=[INSTANCE_CONNECTION_NAME]=tcp:3306 
+    # Running locally so connect to either a local MySQL instance or connect
+    # to Cloud SQL via the proxy.  To start the proxy via command line:
+    #    $ cloud_sql_proxy -instances=[INSTANCE_CONNECTION_NAME]=tcp:3306
     # See https://cloud.google.com/sql/docs/mysql-connect-proxy
     # DATABASES = {
     #     'default': {
@@ -105,11 +105,11 @@ else:
     #     }
     # }
     DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
 # [END db_setup]
 
 

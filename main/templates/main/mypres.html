@@ -12,7 +12,7 @@
         </a>
         <span>Prescribed by {{ p.doctor.user.username }}.</span>
         <span>Hash: {{ p.hash }}.</span>
-        {% if p.redeemed %}
+        {% if not p.redeemed %}
         <a href="{% url 'order' p.hash %}">Order</a>
         {% else %}
         <span>Status: Order complete</span>

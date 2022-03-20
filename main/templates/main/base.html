@@ -129,10 +129,6 @@
             </div>
         </nav>
 
-        {% if request.path != "/" %}
-        <a href="{% url 'home' %}">Go Back</a>
-        {% endif %}
-
         <div class="page-content">
             {% block content %}
             {% endblock content %}
