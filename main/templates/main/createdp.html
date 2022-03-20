@@ -1,0 +1,12 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<form method="POST">
+    {%csrf_token%}
+    Enter your specialty.<br>
+    <input type="text" name="special"></input><br>
+    Enter your work location.
+    <input type="text" name="job"></input><br>
+    <button type="submit">Submit</button>
+</form>
+
+{% endblock content %}

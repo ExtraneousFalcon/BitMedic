@@ -35,9 +35,10 @@ class Document(models.Model):
 
 
 class Prescription(models.Model):
-    file = models.FileField(null=True)
-    private = models.CharField(max_length=64, null=True, blank=True)
-    public = models.CharField(max_length=64, null=True, blank=True)
+    prescription = models.FileField(null=True)
+    senderPrivate = models.CharField(max_length=64, null=True, blank=True)
+    senderPublic = models.CharField(max_length=64, null=True, blank=True)
+    recipientPublic = models.CharField(max_length=64, null=True, blank=True)
     hash = models.CharField(max_length=64, null=True, blank=True)
     patient = models.ForeignKey(
         Patient, on_delete=models.CASCADE, default=None)

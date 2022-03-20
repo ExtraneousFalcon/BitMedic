@@ -16,6 +16,9 @@ from django.http import HttpResponseRedirect
 
 from .forms import SignUpForm
 
+import web3
+from web3 import Web3
+
 
 @login_required(login_url='login/')
 def home(request):
@@ -156,10 +159,14 @@ def remove_doctor(request, doctor):
 class PrescriptionView(CreateView):
     model = Prescription
     template_name = "main/prescribe.html"
-    fields = ['file', 'private', 'public']
+    fields = ['prescription', 'recipientPublic',
+              'senderPrivate', 'senderPublic']
     success_url = reverse_lazy('upload')
 
     def form_valid(self, form):
+        web3 = Web3(Web3.HTTPProvider(
+            "https://rinkeby.infura.io/v3/4da2bf7c5bb44dfbbd576c6d166d7321"))
+        chain_id = 4
         review = form.save(commit=False)
         review.doctor = Doctor.objects.get(
             user=User.objects.get(username=self.request.user))
@@ -167,7 +174,23 @@ class PrescriptionView(CreateView):
         patient = patient.split("/")[-1]
         review.patient = Patient.objects.get(
             user=User.objects.get(username=patient))
-        review.hash = "xxx"
+
+        recipientPublicKey = review.recipientPublic
+        senderPrivateKey = review.senderPrivate
+        senderPublicKey = review.senderPublic
+        nonce = web3.eth.getTransactionCount(senderPublicKey)
+        tx = {
+            'nonce': nonce,
+            'to': recipientPublicKey,
+            'value': web3.toWei(.01, 'ether'),
+            'gas': 270000,
+            'gasPrice': web3.toWei('55', 'gwei')
+        }
+
+        signedTx = web3.eth.account.signTransaction(tx, senderPrivateKey)
+        send_store_tx = web3.eth.sendRawTransaction(signedTx.rawTransaction)
+        temp = web3.eth.wait_for_transaction_receipt(send_store_tx)
+        review.hash = temp.transactionHash.hex()
         review.save()
         return HttpResponseRedirect(reverse('patient', args=[patient]))
 
@@ -204,3 +227,24 @@ def createpp(request):
 def profile(request):
     p = Patient.objects.get(user=request.user)
     return render(request, "main/profile.html", {'patient': p})
+
+
+def docprof(request, doctor):
+    doc = Doctor.objects.get(user=User.objects.get(username=doctor))
+    return render(request, "main/docprof.html", {'doctor': doc})
+
+
+def createdp(request):
+    if request.method == "POST":
+        doctor = Doctor.objects.get(user=request.user)
+        doctor.special = request.POST.get("special")
+        doctor.job = request.POST.get("job")
+        doctor.save()
+        return redirect('home')
+    return render(request, "main/createdp.html")
+
+
+def mypres(request):
+    patient = Patient.objects.get(user=request.user)
+    pres = Prescription.objects.filter(patient=patient)
+    return render(request, "main/mypres.html", {"pres": pres})

@@ -18,7 +18,7 @@
 <div class="grid-container">
     {% for doctor in doctors %}
     <div class="card">
-        <a href="TODO-PROFILE-LINK">
+        <a href="{% url 'docprof' doctor.user.username %}">
             <!-- TODO PROFILE IMAGE -->
             <span class="card-title">{{ doctor.user.username }}</span>
         </a>

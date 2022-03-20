@@ -1,0 +1,10 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+{% for p in pres %}
+<p><a href="/media/{{p.prescription.name}}">{{p.prescription.name}}</a></p>
+{{p.hash}} <br>
+Prescribed by {{p.doctor.user.username}} <br>
+{% endfor %}
+{% endblock content %}
