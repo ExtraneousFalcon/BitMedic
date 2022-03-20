@@ -7,34 +7,8 @@
     Enter your date of birth.<br>
     <input type="datetime-local" name="dob" value="{{p.dob}}"></input><br>
     {% endif %}
-    {% if not p.gender %}
-    Enter your gender<br>
-    <select name="gender" selected="M">
-        <option value="M">Male</option>
-        <option value="F">Female</option>
-        <option value="N">Nonbinary</option>
-    </select>
-    <br>
-    {% else %}
-    Enter your gender<br>
-    <select name="gender">
-        {% if p.gender == "M" %}
-        <option value="M" selected>Male</option>
-        <option value="F">Female</option>
-        <option value="N">Nonbinary</option>
-        {% elif p.gender == "F" %}
-        <option value="M">Male</option>
-        <option value="F" selected>Female</option>
-        <option value="N">Nonbinary</option>
-        {% else %}
-        <option value="M">Male</option>
-        <option value="F">Female</option>
-        <option value="N" selected>Nonbinary</option>
-        {% endif %}
-    </select>
-    <br>
-
-    {% endif %}
+    Enter your gender.<br>
+    <input type="text" name="gender" value="{{p.gender}}"></input><br>
     Enter any medical conditions you have.<br>
     <input type="text" name="conditions" value="{{p.medcond}}"></input><br>
     Enter your phone number.<br>

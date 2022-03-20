@@ -20,14 +20,8 @@ class Patient(models.Model):
     doctors = models.ManyToManyField(Doctor, blank=True)
     dob = models.DateTimeField(null=True)
     medcond = models.CharField(max_length=10000, null=True)
-    GENDER_CHOICES = (
-        ('M', 'Male'),
-        ('F', 'Female'),
-        ('N', 'Nonbinary'),
-        ('O', 'Other')
-    )
     gender = models.CharField(
-        max_length=1, choices=GENDER_CHOICES, null=True, default='M')
+        max_length=100, null=True)
     phone = models.CharField(max_length=15, null=True)
 
 
