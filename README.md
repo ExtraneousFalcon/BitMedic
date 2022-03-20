@@ -12,7 +12,7 @@ Build an intuitive all-in-one healthcare ecosystem to enhance doctor-patient com
 - Doctors can create patient descriptions through the use of digital signature over the Ethereum blockchain. They must input their private key as a method of "signing' the transaction which will later deliver to the patient.
 
 ## What we used: 
-We made BitMedic possible through Django which runs on a python framework. In order to build the frontend, we styled with JavaScript, HTML, and CSS. We incorporated Web3 libraries in order to take advantage of the Ethereum Blockchain.
+We made BitMedic possible through Django which runs on a python framework. In order to build the frontend, we styled with JavaScript, HTML, and CSS. We incorporated Web3 libraries in order to take advantage of the Ethereum Blockchain. The website is hosted on Google Cloud.
 
 ## Visit the website!
 https://www.bitmedic.tech/
