@@ -56,11 +56,13 @@ class DocumentView(CreateView):
             patient = patient.split("/")[-1]
             review.patient = Patient.objects.get(
                 user=User.objects.get(username=patient))
+            review.uploader = self.request.user
             review.save()
             return HttpResponseRedirect(reverse('patient', args=[patient]))
 
         except Doctor.DoesNotExist:
             review.patient = Patient.objects.get(user=self.request.user)
+            review.uploader = self.request.user
         review.save()
         return redirect(reverse_lazy('home'))
 
@@ -220,8 +222,6 @@ def createpp(request):
             patient.medcond = request.POST.get("conditions")
         if(request.POST.get("dob")):
             patient.dob = request.POST.get("dob")
-        if(request.POST.get("gender")):
-            patient.gender = request.POST.get("gender")
         if(request.POST.get("phone")):
             patient.phone = request.POST.get("phone")
 

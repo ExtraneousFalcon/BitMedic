@@ -1,0 +1,25 @@
+## Inspiration
+When most people think of blockchains, they associate it with cryptocurrency.  When we read about blockchains, we realized that there are so many other scenarios where blockchains can improve security, confidentiality and ownership of private data.  We wanted to redefine the use of blockchains in an area none more important than our health data which today resides in doctor's, hospitals, insurance companies,  pharmacies back offices. 
+
+## What it does
+We have built an intuitive all-in-one healthcare ecosystem to enhance doctor-patient communication
+- Patients are able to add and remove doctors, giving them the ability to provide prescriptions and access medical records
+- Patients can add to their medical history by uploading in their files
+- Once there is an available prescription, patients are able to send payment through Ethereum for their prescriptions created by the doctor. Once the payment has been sent, the order will then be unavailable to buy again.
+- Doctors are able to view patient profiles and access their medical history. They can also upload new files to the patient's database.
+- Doctors can create patient descriptions through the use of digital signature over the Ethereum blockchain. They must input their private key as a method of "signing' the transaction which will later deliver to the patient.
+
+## How we built it
+We made BitMedic possible through Django which runs on a python framework. In order to build the frontend, we styled with JavaScript, HTML, and CSS.  We incorporated Web3 libraries in order to take advantage of the Ethereum Blockchain. 
+
+## Challenges we ran into
+We ran into several issues when trying to host our project through google cloud from configuring the CSRS as Django was not able to get the correct headers. We also faced some issues using rinkeby, the Ethereum test network showcasing our transactions, due to multiple errors when generating the transactions. 
+
+## Accomplishments that we're proud of
+We were proud of finally getting our website up and running, having expended a lot of energy and effort into getting our design completed and hosted. We were also happy with the way we used smart contracts to create prescriptions, and being able to view the transactions on the blockchain: rinkeby.etherscan.io. 
+
+## What we learned
+Prior to our project, we all had a limited understanding of the blockchain and how it works. After several hours of development, we learnt a lot about the usefulness of the blockchain while also understanding the power of smart contracts. We also learnt a lot about google cloud and the intricacies of properly hosting our project on a website. Moreover, we refined our website-development skills with Django, outlined as we created a sleek frontend.
+
+## What's next for BitMedic
+We hope to create an interface allowing pharmacists to monitor transactions and regulate payments. We plan on further raising our standards and goals by creating an all-in-one Healthcare ecosystem by adding new features, such as scheduling, to seamlessly ease the process between doctors and patients.
