@@ -4,7 +4,7 @@
 <h1>View your patients here.</h1>
 <p>Select a patient to get more details.</p>
 
-<div class="grid-container">
+<div class="grid-container-row">
     {% for patient in patients %}
     <div class="card">
         <a href="{% url 'patient' patient.user.username %}">

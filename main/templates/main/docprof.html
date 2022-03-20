@@ -1,6 +1,9 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-{{doctor.user.username}}
-{{doctor.job}}
+<h1>{{ doctor.user.username }}</h1>
+
+<h3>Job:</h3>
+<p>{{doctor.job}}</p>
+
 {% endblock content %}

@@ -1,7 +1,19 @@
 {% extends 'main/base.html' %}
+
 {% block content %}
-Patient Name: {{patient.user.username}}
-Date of Birth: {{patient.dob}}
-Medical Conditions: {{patient.medcond}}
-Gender: {{patient.gender}}
+<h1>Edit your profile</h1>
+<p>This is where you can edit your personal information and medical history. Because your BitMedic account is shared directly with your doctors, you only have to do this once and it will be updated for all of your providers.</p>
+
+<h3>Patient Name:</h3>
+<p>{{patient.user.username}}</p>
+
+<h3>Date of Birth:</h3>
+<p>{{patient.dob}}</p>
+
+<h3>Medical Conditions:</h3>
+<p>{{patient.medcond}}</p>
+
+<h3>Gender:</h3>
+<p>{{patient.gender}}</p>
+
 {% endblock content %}

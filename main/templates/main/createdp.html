@@ -1,10 +1,14 @@
 {% extends 'main/base.html' %}
+
 {% block content %}
+<h1>Edit your doctor profile</h1>
+<p>This is information can be viewed by patients.</p>
+
 <form method="POST">
     {%csrf_token%}
-    Enter your specialty.<br>
+    <h3>Enter your specialty:</h3><br>
     <input type="text" name="special"></input><br>
-    Enter your work location.
+    <h3>Enter your work location:</h3>
     <input type="text" name="job"></input><br>
     <button type="submit">Submit</button>
 </form>

@@ -1,15 +1,24 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
+<h1>View your prescriptions</h1>
+<p>Here you can view the prescriptions that have been prescribed by all of your doctors.</p>
 
-{% for p in pres %}
-<p><a href="/media/{{p.prescription.name}}">{{p.prescription.name}}</a></p>
-{{p.hash}} <br>
-Prescribed by {{p.doctor.user.username}} <br>
-{% if p.redeemed %}
-<a href="{% url 'order' p.hash %}">Order</a>
-{% else %}
-Order complete
-{% endif %}
-{% endfor %}
+<div class="grid-container-row">
+    {% for p in pres %}
+    <div class="card">
+        <a href="/media/{{ p.prescription.name }}">
+            <span class="card-title">{{ p.prescription.name }}</span>
+        </a>
+        <span>Prescribed by {{ p.doctor.user.username }}.</span>
+        <span>Hash: {{ p.hash }}.</span>
+        {% if p.redeemed %}
+        <a href="{% url 'order' p.hash %}">Order</a>
+        {% else %}
+        <span>Status: Order complete</span>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+
 {% endblock content %}

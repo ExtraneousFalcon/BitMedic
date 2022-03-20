@@ -58,6 +58,13 @@
             grid-auto-rows: minmax(100px, auto);
         }
 
+        .grid-container-row {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 12px;
+            grid-auto-rows: minmax(100px, auto);
+        }
+
         .card {
             padding: 14px;
             border-radius: 0.375rem;
@@ -103,10 +110,10 @@
                             <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Support</a>
+                            <a class="nav-link" href="mailto:support@bitmedic.tech">Support</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Account</a>
+                            <a class="nav-link" href="/profile/">Account</a>
                         </li>
                         {% if request.user.is_authenticated %}
                         <li class="nav-item">
