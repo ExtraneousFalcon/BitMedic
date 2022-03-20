@@ -1,7 +1,7 @@
 from django.urls import path
 
 from .views import DocumentView, home, CustomLoginView, RegisterPage, filelistpatient, patientlist, patientview, doctorlist, PrescriptionView, add_doctor, remove_doctor, createpp, profile, docprof, createdp
-from .views import mypres
+from .views import mypres, order
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
@@ -22,5 +22,6 @@ urlpatterns = [
     path('profile/', profile, name="profile"),
     path('docprof/<str:doctor>', docprof, name="docprof"),
     path('createdp/', createdp, name="createdp"),
-    path('mypres', mypres, name="mypres")
+    path('mypres', mypres, name="mypres"),
+    path('order/<str:hash>', order, name="order"),
 ]

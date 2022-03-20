@@ -21,7 +21,8 @@ class Patient(models.Model):
     GENDER_CHOICES = (
         ('M', 'Male'),
         ('F', 'Female'),
-        ('N', 'Nonbinary')
+        ('N', 'Nonbinary'),
+        ('O', 'Other')
     )
     gender = models.CharField(
         max_length=1, choices=GENDER_CHOICES, default="Please choose your gender")
@@ -44,3 +45,4 @@ class Prescription(models.Model):
         Patient, on_delete=models.CASCADE, default=None)
     doctor = models.ForeignKey(
         Doctor, on_delete=models.CASCADE, default=None)
+    redeemed = models.BooleanField(default=False)

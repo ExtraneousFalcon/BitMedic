@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<form method="POST">
+    {%csrf_token%}
+    Enter your public key.<br>
+    <input type="text" name="public"></input><br>
+    Enter your private key.<br>
+    <input type="text" name="private"></input><br>
+    Enter your transaction amount in ETH<br>
+    <input type="number" step="0.01" name="amount"></input><br>
+    <button type="submit">Submit</button>
+</form>
+
+{% endblock content %}

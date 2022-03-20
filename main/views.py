@@ -248,3 +248,36 @@ def mypres(request):
     patient = Patient.objects.get(user=request.user)
     pres = Prescription.objects.filter(patient=patient)
     return render(request, "main/mypres.html", {"pres": pres})
+
+
+def order(request, hash):
+    if request.method == "POST":
+        patient = Patient.objects.get(user=request.user)
+        public = request.POST.get("public")
+        private = request.POST.get("private")
+        amount = request.POST.get("amount")
+
+        web3 = Web3(Web3.HTTPProvider(
+            "https://rinkeby.infura.io/v3/4da2bf7c5bb44dfbbd576c6d166d7321"))
+        chain_id = 4
+
+        recipientPublicKey = "0x4c05b9cbecD1d0A88f6CdD60B0Fe032EdD5a0172"
+
+        nonce = web3.eth.getTransactionCount(public)
+        tx = {
+            'nonce': nonce,
+            'to': recipientPublicKey,
+            'value': web3.toWei(amount, 'ether'),
+            'gas': 270000,
+            'gasPrice': web3.toWei('55', 'gwei')
+        }
+
+        signedTx = web3.eth.account.signTransaction(tx, private)
+        send_store_tx = web3.eth.sendRawTransaction(signedTx.rawTransaction)
+        temp = web3.eth.wait_for_transaction_receipt(send_store_tx)
+        pres = Prescription.objects.get(hash=hash)
+        hash = temp.transactionHash.hex()
+        pres.redeemed = True
+        pres.save()
+        return render(request, "main/mypres.html")
+    return render(request, "main/order.html")

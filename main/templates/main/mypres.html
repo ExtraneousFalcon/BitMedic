@@ -6,5 +6,10 @@
 <p><a href="/media/{{p.prescription.name}}">{{p.prescription.name}}</a></p>
 {{p.hash}} <br>
 Prescribed by {{p.doctor.user.username}} <br>
+{% if p.redeemed %}
+<a href="{% url 'order' p.hash %}">Order</a>
+{% else %}
+Order complete
+{% endif %}
 {% endfor %}
 {% endblock content %}

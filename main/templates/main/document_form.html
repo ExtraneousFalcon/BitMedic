@@ -1,9 +1,8 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-<h1>Upload a file to your BitMedic account.</h1>
-<p>This can be anything.</p>
-
+<h1>Upload a medical file.</h1>
+<p>Patients can access these files and share them with doctors.</p>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
