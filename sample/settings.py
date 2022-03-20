@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-x@3xoxblf4)3i-gi6*3)^xgqkb!tqsd#k=xq*0vuhc2%*b+wt3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.bitmedic.tech']
 
 
 # Application definition
