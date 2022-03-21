@@ -11,7 +11,6 @@ class Doctor(models.Model):
         User, on_delete=models.CASCADE, primary_key=True)
     special = models.CharField(max_length=100, null=True, blank=True)
     job = models.CharField(max_length=100, null=True, blank=True)
-    degree = models.CharField(max_length=100, null=True, blank=True)
 
 
 class Patient(models.Model):

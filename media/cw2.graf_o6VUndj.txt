@@ -1,0 +1,106 @@
+:doc title CSCI 2670 - Classwork 2
+
+Name: Sai Anoop Avunuri
+
+___ Instructions
+> |> Create a \graf document with your answers to the following problems.  Save your work as a Grafstate file with the extension **{.graf.txt} and upload it to eLC.
+> |> You may work in small groups.  List in your document *{all} of the students in your group.
+
+:task By the end of this assignment, you should be able perform the closure processes for the *{union}, *{concatenation}, *{Kleene closure} operations on @langs recognized by NFAs.
+
+___ Exercises
+Consider the following NFAs N_1 and N_2:
+:+ nfa N1
+{
+Q={q1,q2,q3,q4,q5,q6}
+S={a,b}
+q0=q1
+d(q1,a)={q2}
+d(q2,\e)={q3}
+d(q2,a)={q1}
+d(q3,b)={q2,q4}
+d(q4,b)={q2,q5}
+d(q5,a)={q6}
+d(q6,b)={q5}
+F={q4,q6}
+}
+:+ nfa N2
+{
+Q={r1,r2,r3,r4}
+S={a,b}
+q0=r1
+d(r1,b)={r1,r3}
+d(r2,a)={r2,r4}
+d(r3,b)={r2,r4}
+d(r4,b)={r3}
+F={r4}
+}
+
+1. Use the !{process from the notes} to construct a NFA N_3 that recognizes the @lang L(N_1)\uL(N_2).  Use the \graf Simulator to show 2 strings that are accepted by N_3 and 2 strings that are rejected by N_3.
+
+:+ nfa N_3
+{
+Q={qs,q1,q2,q3,q4,q5,q6,r1,r2,r3,r4}
+S={a,b}
+q0=qs
+d(qs,\e)={q1,r1}
+d(q1,a)={q2}
+d(q2,\e)={q3}
+d(q2,a)={q1}
+d(q3,b)={q2,q4}
+d(q4,b)={q2,q5}
+d(q5,a)={q6}
+d(q6,b)={q5}
+d(r1,b)={r1,r3}
+d(r2,a)={r2,r4}
+d(r3,b)={r2,r4}
+d(r4,b)={r3}
+
+F={q4,q6,r4}
+}
+
+2. Use the !{process from the notes} to construct a NFA N_4 that recognizes the @lang L(N_1)\@L(N_2).  Use the \graf Simulator to show 2 strings that are accepted by N_4 and 2 strings that are rejected by N_4.
+
+:+ nfa N_4
+{
+Q = {q1,q2,q3,q4,q5,q6,r1,r2,r3,r4}
+S={a,b}
+q0=q1
+d(q1,a)={q2}
+d(q2,\e)={q3}
+d(q2,a)={q1}
+d(q3,b)={q2,q4}
+d(q4,b)={q2,q5}
+d(q5,a)={q6}
+d(q6,b)={q5}
+d(r1,b)={r1,r3}
+d(r2,a)={r2,r4}
+d(r3,b)={r2,r4}
+d(r4,b)={r3}
+d(q4,\e)={r1}
+d(q6,\e)={r1}
+F={r4}
+}
+
+3. Use the !{process from the notes} to construct a NFA N_5 that recognizes the @lang L(N_1)*.  Use the \graf Simulator to show 2 strings that are accepted by N_5 and 2 strings that are rejected by N_5.
+
+:+ nfa N_5
+{
+Q={q1,q2,q3,q4,q5,q6}
+S={a,b}
+q0=q1
+d(q1,a)={q2}
+d(q2,\e)={q3}
+d(q2,a)={q1}
+d(q3,b)={q2,q4}
+d(q4,b)={q2,q5}
+d(q5,a)={q6}
+d(q6,b)={q5}
+d(q6,\e)={q1}
+F={q4,q6,q1}
+}
+
+:sim N_5 \e
+:sim N_5 abba
+:sim N_5 a
+:sim N_5 b

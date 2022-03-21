@@ -1,0 +1,90 @@
+:doc title CSCI 2670 - Classwork 5
+
+Name: Sai Anoop Avunuri
+
+___ Instructions
+> |> Create a \graf document with your answers to the following problems.  Save your work as a Grafstate file with the extension **{.graf.txt} and upload it to eLC.
+> |> You may work in small groups.  List in your document *{all} of the students in your group.
+> |> !{Proofread your document *{before} submitting it to eLC.}
+//
+
+__ Phrase structure grammars
+
+> A **{phrase structure grammar} (PSG) is a variation of a context-free grammar that uses a lexicon instead of an alphabet.  A *{lexicon} is a set of words (each consisting of one or more lowercase letters).
+//
+
+> The lexicon is defined in a PSG by lexical rules.  A *{lexical rule} is a grammar rule that has a single lexical word on the right hand side of the rule.
+//
+
+> A PSG defines a @lang by describing the structure of sentences belonging to the @lang.  A sentence is composed of substrings called *{phrases}.  The *{phrase rules} of a PSG are used to define how the phrases are constructed.
+//
+
+> By convention, the following variable names are often used in PSGs to denote certain types of phrases and parts of speech:
+:fig table
+{
+Variable name#Meaning#@Exm
+S#Sentence#\[the cat chases the dog]
+NP#Noun phrase#\[the cat]
+VP#Verb phrase#\[chases the dog]
+D#Determiner#\[the]
+N#Noun#\[cat]
+V#Verb#\[chases]
+}
+[i] The variable names above are conventional and have no special meaning in \graf.
+//
+
+__ Exercises
+> Consider the following PSG:
+:+ psg G1
+{
+S->NP VP| PNP PVP
+NP->D N|D A N
+PNP->D PN|D A PN
+VP->V NP| V PNP
+PVP -> PV NP|PV PNP
+A->fast|slow
+D->the
+N->cat|dog
+PN->cats|dogs
+V->chases
+PV->chase
+}
+:sim G1 the cat chases the dog
+//
+
+1. List all sentences belonging to the language recognized by G1.
+//
+the dog chases the cat
+the cat chases the dog
+the cat chases the cat
+the dog chases the dog
+//
+2. Modify your grammar by adding the following words to your lexicon: \[dogs, cats, chase]
+
+[i] Add the appropriate !{lexical rules} to your grammar to handle the new words !{@wo} adding new phrase rules.  For example, add a rule to indicate that \[dogs] is a noun.  Test your grammar on some sentences.
+
+[i] Your new grammar should accept all of the sentences accepted by G1 in addition to others.  A sentence is said to be **{grammatical}, *{according to a grammar}, if it is accepted by that grammar.  Thus, all sentences accepted by your new grammar are grammatical according to *{your} new grammar.
+//
+
+3. Give two new sentences accepted by your grammar from #2 that are also grammatical according to the English language,
+//
+The dogs chase the cat.
+The cats chase the dogs.
+//
+4. The sentence \[the dogs chases the cat] is not considered grammatical according to English but is accepted by the grammar from #2.  List two other sentences that are accepted by the grammar from #2 but are not considered grammatical in English.
+//
+The cats chases the cats.
+The dog chase the cat.
+//
+5. Explain why your new grammar allows your sentences from #4 instead of deeming them to be ungrammatical.
+//
+In english, plural nouns such as dogs are associated with verbs such as chase and singular nouns such as dog are associated with verbs such as chases. However, in the PSG, we didn't indicate any such rules, so it allows any type of verb with any type of noun.
+//
+6. Add new phrase rules to your grammar to address your discovery in #5.  Your new grammar should accept sentences like \[the dog chases the cat] while rejecting sentences like \[the dogs chases the cat].
+[i] You may add new variables to your grammar.
+//
+:sim G1 the dog chases the cat
+:sim G1 the dogs chases the cat
+
+7. Add the !{adjectives} \[fast] and \[slow] to your grammar, adding the appropriate rules to accept sentences like \[the fast cat chases the slow dog].
+:sim G1 the fast cat chases the slow dog
